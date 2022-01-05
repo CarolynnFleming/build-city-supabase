@@ -46,7 +46,7 @@ skyDropdown.addEventListener('change', async() => {
 
 nameForm.addEventListener('submit', async(e) => {
     e.preventDefault();
-    
+ 
     const data = new FormData(nameForm);
 
     const name = data.get('name');
