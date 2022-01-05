@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <title>Document</title>
+</head>
+
+<body> 
+    <header>
+        <div class="gutter-right logo">
+        </div>
+    </header>   
+    <button id="logout">Logout</button>
+    <main>
+        <section>
+        <h1>Choose your world wisely!👩🏽‍🎤<span class = "world-name"></span></h1>
+        </section>
+        <section class = "pictures">
+        <div class ="ocean">
+            <img class = "ocean-img" />
+        </div>
+        <div class = "magic">
+            <img class = "magic-img" />
+        </div>
+        <div class = "sky">
+            <img class = "sky-img" />
+        </div>
+        </section>
+        <section class="inputs">
+            <form class="slogan-form">
+                <input name="slogan" />
+                <button>Add slogan</button>
+            </form>
+            <form class="name-form">
+                <input name="name" />
+                <button>Submit name</button>
+            </form>
+            <div class="dropdowns">
+                <label>
+                    Ocean World
+                    <select class="ocean-dropdown">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+                <label>
+                    Magic World
+                    <select class="magic-dropdown">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+                <label>
+                    Sky World
+                    <select class="sky-dropdown">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+
+
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+    </footer>
+    <script type="module" src="./world.js"></script>
+</body>
+
+</html>
