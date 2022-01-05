@@ -1,4 +1,4 @@
-import { checkAuth, logout } from '../fetch-utils.js';
+import { checkAuth, logout, getWorld, createDefaultWorld, updateSlogans, updateMagicId, updateOceanId, updateSkyId, updateName } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -10,7 +10,7 @@ const oceanImgEl = document.querySelector('.ocean-img');
 const magicImgEl = document.querySelector('.magic-img');
 const skyImgEl = document.querySelector('.sky-img');
 
-const nameForm = document.querySelector('.mame-form');
+const nameForm = document.querySelector('.name-form');
 const worldNameEl = document.querySelector('.world-name');
 
 const sloganForm = document.querySelector('.slogan-form');
@@ -23,23 +23,22 @@ logoutButton.addEventListener('click', () => {
 });
 
 oceanDropdown.addEventListener('change', async() => {
-    // e.target.value would have worked here too :)
+   
     const updatedWorld = await updateOceanId(oceanDropdown.value);
 
     displayWorld(updatedWorld);
 });
 
-// if i understood the water dropdown, i understand this one
+
 magicDropdown.addEventListener('change', async() => {
-    // e.target.value would have worked here too :)
-    const updatedWorld = await updateMagicId(MagicDropdown.value);
+ 
+    const updatedWorld = await updateMagicId(magicDropdown.value);
 
     displayWorld(updatedWorld);
 });
 
-// if i understood the previous two dropdowns, i get this one for free too
 skyDropdown.addEventListener('change', async() => {
-    // e.target.value would have worked here too :)
+   
     const updatedWorld = await updateSkyId(skyDropdown.value);
 
     displayWorld(updatedWorld);
@@ -58,32 +57,31 @@ nameForm.addEventListener('submit', async(e) => {
 });
 
 window.addEventListener('load', async() => {
-    // - check to see if this user has a city already
-    // (try to fetch it from supabase--
+    
     const world = await getWorld();
-    // if there is no city already, create a new one and display that)
+    
     if (!world) {
-        // make a city and display it
+        
         const newWorld = await createDefaultWorld();
         
-        displayCity(newWorld);
+        displayWorld(newWorld);
     } else {
-        // display that city
-        displayCity(world);
+       
+        displayWorld(world);
     }
 });
 
-function displayCity(world) {
-    // change textContent of city name span to the city name
+function displayWorld(world) {
+    
     worldNameEl.textContent = world.name;
-    // change the image src waterfront image
+   
     oceanImgEl.src = `../assets/ocean-${world.ocean_id}.jpeg`;
-    // change the image src skyline image
+    
     magicImgEl.src = `../assets/magic-${world.magic_id}.jpeg`;
-    // change the image src castle image
+   
     skyImgEl.src = `../assets/sky-${world.sky_id}.jpeg`;
 
-    // loop through slogans and render and append each slogan to the slogan div
+    
     sloganListEl.textContent = '';
 
     for (let slogan of world.slogans) {
@@ -102,17 +100,15 @@ sloganForm.addEventListener('submit', async(e) => {
 
     const data = new FormData(sloganForm);
 
-    // go get the new slogan from the form
+    
     const newSlogan = data.get('slogan');
 
-    // go get the old city (and its many slogans) from supabase
-    const city = await getWorld();
+    
+    const world = await getWorld();
 
-    // that city has an array of slogans living on city.slogans
-    // push the new slogan in the array of all the existing slogans
-    city.slogans.push(newSlogan);
+    world.slogans.push(newSlogan);
 
     const updatedWorld = await updateSlogans(world.slogans);
     
-    displayCity(updatedWorld);
+    displayWorld(updatedWorld);
 });
