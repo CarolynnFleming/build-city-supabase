@@ -133,3 +133,14 @@ footer {
 .auth-container button {
     margin: 10px;
 }
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+}
+
+.pictures img {
+    border: solid 9px purple;
+    width: 200px;
+    height: 200px;
+}
